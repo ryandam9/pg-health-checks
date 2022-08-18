@@ -6,11 +6,11 @@ def generate_html_table_from_df(df, filename):
     filename = filename.replace(".sql", "")
 
     html_table = f"""
-    <div class="row">
-        <h1>{filename}</h1>
-        <hr>
-        <div class="col-1"></div>
-        <div class="col-10">
+    <div class="p-5 mb-4 bg-light rounded-3">
+    <h3>{filename}</h3>
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div>
     """
 
     html_table += "\n"
@@ -35,8 +35,10 @@ def generate_html_table_from_df(df, filename):
     html_table = html_table.replace('<th scope="row"', '<th class="th-sm"')
 
     html_table += """
+            </div>
         </div>
-        <div class="col-1"></div>
+     </div>
+    </div>    
     """
 
     return html_table
