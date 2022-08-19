@@ -44,10 +44,47 @@
 
     [data-placeholder]
 
+    <div id="donutchart" style="width: 900px; height: 500px;"></div>
+    <div id="chart_div"></div>
+    <div id="barchart_values" style="width: 900px; height: 300px;"></div>
+
+    <br>
+    <hr>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div>
+                    <div id="columnchart_material" style="width: 1000px; height: 600px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div>
+                    <div id="columnchart_values" style="width: 900px; height: 300px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-4">
+            <div class="row">
+                <div id="table_div" style="width: 900px; height: 500px;"></div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src=https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script>
         $(document).ready(function () {
@@ -55,6 +92,71 @@
             [dynamic_tables]
         });
     </script>
+
+    <script src="../js/charts.js"></script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawChart([
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
+            ], 'My Daily Activities', 'donutchart');
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawMultSeries([
+                ['City', '2010 Population', '2000 Population'],
+                ['New York City, NY', 8175000, 8008000],
+                ['Los Angeles, CA', 3792000, 3694000],
+                ['Chicago, IL', 2695000, 2896000],
+                ['Houston, TX', 2099000, 1953000],
+                ['Philadelphia, PA', 1526000, 1517000]
+            ], 'Population of Largest U.S. Cities', 'chart_div', 'Total Population', 'City');
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawBarChart([
+                ["Element", "Density", { role: "style" }],
+                ["Copper", 8.94, "#b87333"],
+                ["Silver", 10.49, "silver"],
+                ["Gold", 19.30, "gold"],
+                ["Platinum", 21.45, "color: #e5e4e2"]
+            ], "Density of Precious Metals, in g/cm^3");
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawColumnChart1();
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawColumnChart2();
+        });
+    </script>
+
+    <script>
+        window.addEventListener('load', function () {
+            drawTableChart();
+        });
+    </script>
+
+
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            drawChart();
+        }, false);
+    </script> -->
 
 </body>
 

@@ -62,5 +62,5 @@ html_template = html_template.replace("[dynamic_tables]", data_tables)
 
 ts = datetime.now().strftime("%Y_%m_%d %H:%M").replace(" ", "_").replace(":", "_")
 
-with open(f"./health_check_{ts}.html", "w") as f:
+with open(f"./reports/health_check_{ts}.html", "w") as f:
     f.write(html_template)
