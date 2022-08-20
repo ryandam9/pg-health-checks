@@ -1,6 +1,19 @@
 def generate_html_table_from_df(df, filename):
     """
-    Generates an HTML table from a Pandas DataFrame.
+    Generates a HTML table from a Pandas DataFrame.
+
+    Parameters
+    ----------
+    df : Pandas DataFrame
+        The DataFrame to be converted to an HTML table.
+
+    filename : str
+        SQL query file name. It is used as the "ID" of the html
+        table.
+
+    Returns
+    -------
+        html_table : str
     """
 
     filename = filename.replace(".sql", "")
@@ -16,7 +29,8 @@ def generate_html_table_from_df(df, filename):
     html_table += "\n"
     html_table += df.to_html(index=False)
     html_table = html_table.replace(
-        '<table border="1" class="dataframe">', f'<table class="table table-striped table-bordered" id="{filename}">'
+        '<table border="1" class="dataframe">',
+        f'<table class="table table-striped table-bordered" id="{filename}">',
     )
     html_table = html_table.replace("<thead>", '<thead class="thead-dark">')
     html_table = html_table.replace('<tr style="text-align: right;">', "<tr>")

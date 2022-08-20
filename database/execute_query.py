@@ -50,7 +50,9 @@ def postgres_execute_query_sqlalchemy(config, query, params):
         with warnings.catch_warnings():
             warnings.simplefilter("ignore", category=sa_exc.SAWarning)
 
-            engine = sqlalchemy.create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}", echo=False)
+            engine = sqlalchemy.create_engine(
+                f"postgresql://{user}:{password}@{host}:{port}/{database}", echo=False
+            )
 
             if params is None:
                 df = pd.read_sql(query, engine)
@@ -91,7 +93,9 @@ def postgres_execute_query(config, query, parameters):
                 try:
                     string_value = str(record[i]) if record[i] is not None else ""
                 except Exception as error:
-                    print("Unable to convert value to String; value: {}".format(record[i]))
+                    print(
+                        "Unable to convert value to String; value: {}".format(record[i])
+                    )
 
                 rec.append(string_value)
             records.append(rec)

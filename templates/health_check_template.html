@@ -27,7 +27,6 @@
             font-family: 'Fira Code Retina', Courier, monospace;
         }
     </style>
-
 </head>
 
 <body>
@@ -42,7 +41,7 @@
         </div>
     </main>
 
-    [data-placeholder]
+    [data_placeholder]
 
     <div id="donutchart" style="width: 900px; height: 500px;"></div>
     <div id="chart_div"></div>
@@ -94,48 +93,29 @@
     </script>
 
     <script src="../js/charts.js"></script>
+    <script src="../js/runtime_data.js"></script>
 
     <script>
         window.addEventListener('load', function () {
-            drawChart([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
-            ], 'My Daily Activities', 'donutchart');
+            drawChart(data1, 'My Daily Activities', 'donutchart');
         });
     </script>
 
     <script>
         window.addEventListener('load', function () {
-            drawMultSeries([
-                ['City', '2010 Population', '2000 Population'],
-                ['New York City, NY', 8175000, 8008000],
-                ['Los Angeles, CA', 3792000, 3694000],
-                ['Chicago, IL', 2695000, 2896000],
-                ['Houston, TX', 2099000, 1953000],
-                ['Philadelphia, PA', 1526000, 1517000]
-            ], 'Population of Largest U.S. Cities', 'chart_div', 'Total Population', 'City');
+            drawMultSeries(data2, 'Population of Largest U.S. Cities', 'chart_div', 'Total Population', 'City');
         });
     </script>
 
     <script>
         window.addEventListener('load', function () {
-            drawBarChart([
-                ["Element", "Density", { role: "style" }],
-                ["Copper", 8.94, "#b87333"],
-                ["Silver", 10.49, "silver"],
-                ["Gold", 19.30, "gold"],
-                ["Platinum", 21.45, "color: #e5e4e2"]
-            ], "Density of Precious Metals, in g/cm^3");
+            drawBarChart(data3, "Density of Precious Metals, in g/cm^3");
         });
     </script>
 
     <script>
         window.addEventListener('load', function () {
-            drawColumnChart1();
+            drawColumnChart1(data4);
         });
     </script>
 
@@ -150,13 +130,6 @@
             drawTableChart();
         });
     </script>
-
-
-    <!-- <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            drawChart();
-        }, false);
-    </script> -->
 
 </body>
 

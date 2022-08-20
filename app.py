@@ -57,6 +57,9 @@ html_template = ""
 with open("./templates/health_check_template.html", "r") as f:
     html_template = f.read()
 
+# The following Data placeholders are going to be replaced:
+#    1. HTML tables.
+#    2. Javascript to initialize the data tables.
 html_template = html_template.replace("[data-placeholder]", html_table_string)
 html_template = html_template.replace("[dynamic_tables]", data_tables)
 
