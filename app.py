@@ -3,7 +3,7 @@ import os
 import sys
 from datetime import datetime
 
-from config import database, host, password, port, user
+from config import database, port, user
 from database.execute_query import postgres_execute_query_sqlalchemy
 from utils import generate_html_table_from_df, print_messages
 
@@ -12,9 +12,27 @@ requested_query = 0
 if len(sys.argv) == 2:
     requested_query = int(sys.argv[1])
 
-
 sql_files = []
 queries_directory = "./queries"
+
+# User's home directory.
+home_directory = os.path.expanduser("~")
+
+# Read DB hostname & password from User's home directory.
+try:
+    with open(home_directory + "/.pgpass", "r") as pgpass_file:
+        for line in pgpass_file:
+            if line.startswith("host"):
+                host = line.split("=")[1].strip()
+            elif line.startswith("password"):
+                password = line.split("=")[1].strip()
+except Exception as error:
+    print(f"Unable to read {home_directory}/.pgpass file.\n" + str(error))
+    print(f"Create {home_directory}/.pgpass file with the following contents:")
+    print("host = <host>")
+    print("password = <password>")
+    sys.exit(1)
+
 
 db_config = {
     "host": host,
@@ -58,7 +76,9 @@ for file_no, file_name in enumerate(sql_files):
             html_table_string += html_table
 
             # Make the HTML table a DataTable
-            data_tables += "\n" + "$('#" + file_name.replace(".sql", "") + "').DataTable();"
+            data_tables += (
+                "\n" + "$('#" + file_name.replace(".sql", "") + "').DataTable();"
+            )
 
 
 # Read HTML template file
