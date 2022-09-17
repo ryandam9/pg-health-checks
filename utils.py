@@ -1,5 +1,7 @@
 from tabulate import tabulate
 
+from notes import notes
+
 
 def generate_html_table_from_df(df, filename):
     """
@@ -19,11 +21,15 @@ def generate_html_table_from_df(df, filename):
         html_table : str
     """
 
+    # Convert column names to upper case
+    df.columns = [col.upper() for col in df.columns]
+
     filename = filename.replace(".sql", "")
+    filename_heading = filename.replace("_", " ").title()
 
     html_table = f"""
-    <div class="p-5 mb-4 bg-light rounded-3">
-    <h3>{filename}</h3>
+    <div class="p-5 mb-2 bg-light rounded-3">
+    <h3>{filename_heading}</h3>
         <div class="container-fluid py-4">
             <div class="row">
                 <div>
@@ -41,16 +47,44 @@ def generate_html_table_from_df(df, filename):
     html_table += """
             </div>
         </div>
-     </div>
-
-     <div class="alert alert-primary" role="alert">
-          Observation:
-     </div>
-
-    </div>    
     """
 
+    html_msg = fetch_notes(filename)
+
+    if html_msg != "":
+        html_table += html_msg
+
+    html_table += "</div>"
+    html_table += "</div>"
+
     return html_table
+
+
+def fetch_notes(filename):
+    """
+    Extracts Query specific notes
+    """
+    query_id = int(filename.split("_")[0])
+
+    if query_id not in notes.keys():
+        return ""
+
+    msgs = notes[query_id]
+
+    html_msg = """
+    <div class="alert alert-info mt-2" role="alert">
+    """
+
+    html_msg += "<ul>"
+
+    for msg in msgs:
+        html_msg += "<li>" + msg + "</li>"
+
+    html_msg += "</ul>"
+    html_msg += "</div>"
+    html_msg += "<br>"
+
+    return html_msg
 
 
 def print_messages(messages, headers):

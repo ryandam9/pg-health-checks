@@ -76,9 +76,7 @@ for file_no, file_name in enumerate(sql_files):
             html_table_string += html_table
 
             # Make the HTML table a DataTable
-            data_tables += (
-                "\n" + "$('#" + file_name.replace(".sql", "") + "').DataTable();"
-            )
+            data_tables += "\n" + "$('#" + file_name.replace(".sql", "") + "').DataTable();"
 
 
 # Read HTML template file
@@ -92,11 +90,13 @@ ts = datetime.now().strftime("%Y_%m_%d %H:%M")
 #    1. HTML tables.
 #    2. Javascript to initialize the data tables.
 html_template = html_template.replace("[data_placeholder]", html_table_string)
-html_template = html_template.replace("[dynamic_tables]", data_tables)
 html_template = html_template.replace("[db_endpoint]", host)
 html_template = html_template.replace("[db_name]", database)
 html_template = html_template.replace("[db_user]", user)
 html_template = html_template.replace("[rundate]", ts)
+
+# This is where JS Data tables are created.
+html_template = html_template.replace("[dynamic_tables]", data_tables)
 
 ts = ts.replace(" ", "_").replace(":", "_")
 

@@ -1,7 +1,7 @@
 -- pg_stat_statements top queries
 -- Top 10 short queries consuming CPU
 SELECT
-    substring(query, 1, 50) AS short_query,
+    query AS short_query,
     round(total_time::numeric, 2) AS total_time,
     calls,
     round(total_time::numeric, 2) AS mean,
