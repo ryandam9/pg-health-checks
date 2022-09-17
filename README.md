@@ -20,5 +20,5 @@ A Python tool to execute Postgres DB queries to show database state/health in a 
 ****
 ## Sample
 
-[Sample][./sample-1.jpg]
+![Sample](./sample-1.jpg)
 
