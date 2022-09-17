@@ -28,7 +28,7 @@ def generate_html_table_from_df(df, filename):
     filename_heading = filename.replace("_", " ").title()
 
     html_table = f"""
-    <div class="p-5 mb-2 bg-light rounded-3">
+    <div class="p-5 mb-2 bg-light rounded-3" id="{filename}_wrapper">
     <h3>{filename_heading}</h3>
         <div class="container-fluid py-4">
             <div class="row">
