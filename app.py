@@ -20,7 +20,7 @@ def read_config_data():
     Also, reads DB host & password from user's home directory.
 
     Returns a dictionary that holds all details required to connect
-    to the database.
+    to the database..
     """
     # User's home directory.
     home_directory = os.path.expanduser("~")
