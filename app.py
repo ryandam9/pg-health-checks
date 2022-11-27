@@ -181,7 +181,7 @@ def main():
     sql_files, html_table_string, data_tables = execute_queries(
         db_config, requested_query)
 
-    # Write HTML report
+    # Write HTML report to a file
     write_html_report(html_table_string, db_config, data_tables, sql_files)
 
 
